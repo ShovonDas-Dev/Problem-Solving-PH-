@@ -4,20 +4,16 @@
 // Write a function findShortestWord that takes a sentence and returns the shortest word in it.
 
 
-function findShortestWord (str){
+function findShortestWord(str){
     let strToArr = str.split(" ")
-    let newStr = []
-    let sortWord = strToArr[0].length;
-    // console.log(sortWord)
-    // console.log(strToArr.length)
-    
-    for (let l=0; l<strToArr.length; l++){
-        // console.log("str" + strToArr[l].length)
-        if(sortWord > strToArr[l].length){
-            newStr.push(strToArr[l])
+    let shortestWord = strToArr[0];
+    for(let i=1; i<strToArr.length; i++){
+        if(shortestWord.length > strToArr[i].length){
+            shortestWord= strToArr[i]
         }
+        
     }
-    return newStr
+    return shortestWord;
 
 }
-findShortestWord("you are my favorite person")
+console.log(findShortestWord("this is a mango"))
