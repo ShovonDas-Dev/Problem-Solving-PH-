@@ -12,4 +12,4 @@
     }
 
     console.log(productDigits(258))
-    
+        
