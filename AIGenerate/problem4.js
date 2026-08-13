@@ -9,28 +9,45 @@
 // }
 
 function getOrderAnalytics(orders){
-    let confirmedOrder = orders.filter((order)=> order.payment.toLowerCase() === "paid")
+    let confirmedOrder = orders.filter((order)=> order.payment.toLowerCase() === "paid" && order.status.toLowerCase() === "completed")
     
     let totalOrders = 0;
     
     let totalItems = 0;
+   let items = []
    
+  
+    // console.log(confirmedOrder)
    
-    confirmedOrder.forEach((order , idx) => {
-        totalItems = totalItems + order.items.length
+    confirmedOrder.forEach((order) => {
+      console.log(order);
+        let totalQuantity = order.items.reduce((sum , item)=> sum + item.quantity ,0)
+        totalItems = totalQuantity + totalItems
         totalOrders += 1
-        console.log(confirmedOrder[idx].items);
+        items.push(order.items)
+        // console.log(confirmedOrder[idx].items);
 
     });
+
+    
+    let total = items.reduce((grandTotal, currentItem)=>{
+        let orderTotal = currentItem.reduce((sum , item)=>{
+          return sum + item.price * item.quantity
+        },0)
+        // console.log(grandTotal);
+        return orderTotal + grandTotal
+    },0)
+    
     
     //let totalRevenue = confirmedOrder.items.reduce((sum , order)=> order.price + sum, 0);
 
-     console.log({
+     return{
         totalOrders,
         totalItems,
+        total
     
 
-     });
+     }
 
 }
 
