@@ -95,3 +95,6 @@ const products = [
 ];
 
 console.log(validateCart(cart, products));
+
+
+
